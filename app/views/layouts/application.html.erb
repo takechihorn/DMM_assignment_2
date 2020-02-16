@@ -9,7 +9,54 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <header>
+  <nav class="navbar navbar-inverse">
+      <p class="header-title">Bookers</p>
+  <ul class="nav navbar-nav navbar-right">
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to "Home", user_path(current_user) ,class: "glyphicon glyphicon-home home"%>
+      </li>
+      <li>
+        <%= link_to 'Users', user_registration_path %>
+      </li>
+      <li>
+        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
+        <%= link_to 'Books', books_path %>
+      </li>
+      <li>
+        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
+        <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+      </li>
+
+    <% else %>
+      <li>
+        <%= link_to "Home", root_path ,class: "glyphicon glyphicon-home home"%>
+      </li>
+      <li>
+        <%= link_to "About", home_about_path %>
+      </li>
+      <li>
+        <%= link_to "sign up", new_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to "login", new_user_session_path %>
+      </li>
+
+    <% end %>
+
+  </ul>
+  </nav>
+  </header>
+
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+    <div class = "container">
+    <div class = "row">
     <%= yield %>
-  </body>
+    </div>
+    </div>
+
 </html>
+

@@ -1,0 +1,30 @@
+
+
+
+<div class="col-xs-9">
+<%= render partial: 'layouts/template', locals: { user:@user,book:@book } %>
+    <div class = "col-xs-9">
+        <h2>Book detail</h2>
+      <table class="table table-hover table-inverse">
+        <tr> 
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+        <tr>
+          
+          <td>
+          <%= attachment_image_tag @user, :profile_image,:fill ,40,40 ,format:"jpg" %></br>
+          <%= link_to @book.user.name ,user_path(@book.user_id)%>
+          </td>
+          <td><%= link_to @book.title, book_path(@book) %></td>
+          <td><%= @book.body %></td>
+          <% if current_user == @user %>
+          <td><%= link_to "Edit",edit_book_path(@book), {class:"btn-sm btn-success"}%></td>
+          <td><%= link_to "Destroy",book_path(@book),method: :delete,class:"btn-sm btn-danger", data:{confirm: "本当に消しますか？"}%></td>
+          <% end%> 
+        </tr>
+          
+      </table>
+    </div>
+</div>

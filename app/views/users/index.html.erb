@@ -1,0 +1,21 @@
+
+<%= render partial: 'layouts/template', locals: { user:@user,book:@book } %>
+
+<div class="col-xs-9">
+
+    <h2>Users</h2>
+  <table class="table table-hover table-inverse">
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th></th>
+    </tr>
+    <% @users.each do |user|%>
+    <tr>
+      <td><%= attachment_image_tag user, :profile_image,:fill, 40,40, format: "jpg",fallback:"no_image.jpg" %></td>
+      <td><%= user.name%></td>
+      <td><%= link_to "Show", user_path(user) %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
