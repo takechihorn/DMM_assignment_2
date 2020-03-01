@@ -71,6 +71,7 @@ gem 'jquery-rails'
 gem 'htmlbeautifier'
 gem "jquery-rails"
 gem 'dotenv-rails'
+gem 'nokogiri'
 group :production do
   gem 'mysql2'
 end
